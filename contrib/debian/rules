@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+
+#DEB_MAKE_CHECK_TARGET = test_pentecostalcoin
+#build/pentecostalcoind::
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_pentecostalcoin)
+
+DEB_INSTALL_EXAMPLES_pentecostalcoind += debian/examples/*
+DEB_INSTALL_MANPAGES_pentecostalcoind += debian/manpages/*
+
+%:
+	dh --with bash-completion $@
+
+override_dh_auto_build:
+	cd src; $(MAKE) -f makefile.unix pentecostalcoind
+	$(MAKE)
+
+override_dh_auto_clean:
+	if [ -f Makefile ]; then $(MAKE) clean; else rm -rf build/; rm -f pentecostalcoin-qt; fi
+	cd src; $(MAKE) -f makefile.unix clean
+
+override_dh_auto_configure:
+	qmake pentecostalcoin-qt.pro USE_QRCODE=1
+
+override_dh_auto_test:
+	cd src; $(MAKE) -f makefile.unix test_pentecostalcoin
+	src/test_pentecostalcoin
+
+# Ensure wrapper is set executable
+binary-post-install/pentecostalcoind:
+	chmod +x $(cdbs_curdestdir)usr/bin/pentecostalcoind
+binary-post-install/pentecostalcoin-qt:
+	chmod +x $(cdbs_curdestdir)usr/bin/pentecostalcoin-qt

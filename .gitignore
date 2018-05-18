@@ -1,0 +1,34 @@
+src/*.exe
+src/pentecostalcoin
+src/pentecostalcoind
+src/test_pentecostalcoin
+.*.swp
+*.*~*
+*.bak
+*.rej
+*.orig
+*.o
+*.patch
+.pentecostalcoin
+
+# Compilation and Qt preprocessor part
+*.qm
+Makefile
+pentecostalcoin-qt
+Pentecostalcoin-Qt.app
+
+# Unit-tests
+Makefile.test
+pentecostalcoin-qt_test
+
+# Resources cpp
+qrc_*.cpp
+
+# Qt creator
+*.pro.user
+
+# Mac specific
+.DS_Store
+build
+
+!src/leveldb-*/Makefile

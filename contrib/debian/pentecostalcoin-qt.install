@@ -1,0 +1,6 @@
+pentecostalcoin-qt usr/bin
+share/pixmaps/pentecostalcoin32.xpm usr/share/pixmaps
+share/pixmaps/pentecostalcoin16.xpm usr/share/pixmaps
+share/pixmaps/pentecostalcoin128.png usr/share/pixmaps
+debian/pentecostalcoin-qt.desktop usr/share/applications
+debian/pentecostalcoin-qt.protocol usr/share/kde4/services/
